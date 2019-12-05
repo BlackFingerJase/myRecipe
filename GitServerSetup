@@ -1,0 +1,33 @@
+git server setup
+
+Server:Client
+
+Server(CentOS_7.5):
+yum install openssh-server [install openssh-server]
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.orginal [backup original file]
+vim /etc/ssh/sshd_config uncomment ListenAddress :: and ListenAddress 0.0.0.0 [server will listen all adapters from LAN]
+systemctl restart sshd.service [restart the service]
+
+useradd Jase.Kou
+passwd Jase.Kou
+groupadd developers [add user group developers]
+usermod -a -G developers Jase.Kou
+
+mkdir /home/dev/xxx.git
+git init --bare /home/dev/xxx.git
+chown -R root:developers /home/dev/xxx.git
+chmod -R g+rwx /home/dev/xxx.git
+
+Client(Windows_10):
+install git
+git config --global user.name "Jase.Kou"
+git config --global user.email "xinyu.kou@xxx.com"
+ssh-keygen -t rsa -C "xinyu.kou@xxx.com"
+ssh-copy-id Jase.Kou@serverIP
+
+Server(CentOS_7.5):
+chmod 600 .ssh/authorized_keys
+
+
+Client(Windows_10):
+git clone ssh://Jase.Kou@109.101.80.240/home/dev/xxx.git myproject 
