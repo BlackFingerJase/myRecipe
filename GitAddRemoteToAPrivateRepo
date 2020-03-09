@@ -1,0 +1,23 @@
+# 状态：本地仓库为新建，空仓库。github上的远程仓库为私人仓库，有文件。
+# 需求：需要将本地仓库关联到远程仓库
+
+# git bash
+# ssh-keygen -t rsa -C "youremail@example.com"
+# 拷贝 c:/users/xxx/.ssh/id_rsa中的内容，添加内容到 github -> setting -> SSH and GPG Keys -> New SSH Key
+# 测试：ssh -T git@github.com
+# 如果测试失败，则添加config文件到~/.ssh/目录下，内容如下：
+Host github.com
+User jase.kou@icloud.com
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentifyFile c:\users\xxx\.ssh\id_rsa # 注意这里要填写绝对路径
+Port 443
+# 测试：ssh -T git@github.com
+# 如果测试成功，说明密钥生效，与github的通讯没有问题
+# git init
+# git remote add origin git@xxxx.git
+# git pull origin master
+# git status
+
+# 注意点：私人仓库（Private Repo）的拉取以及推送如果使用https协议的话需要账号和密码，且需要明文写入命令中，且特殊密码字符需要转义（如@和！），
+操作不便，故ssh + git协议是比较好的解决办法，需要将本地密钥添加到github账号信任密钥库中，一劳永逸。
