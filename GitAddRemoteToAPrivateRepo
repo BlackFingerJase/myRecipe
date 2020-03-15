@@ -10,7 +10,7 @@ Host github.com
 User jase.kou@icloud.com
 Hostname ssh.github.com
 PreferredAuthentications publickey
-IdentifyFile c:\users\xxx\.ssh\id_rsa # 注意这里要填写绝对路径
+IdentityFile c:\users\xxx\.ssh\id_rsa # 注意这里要填写绝对路径，不区分大小写
 Port 443
 # 测试：ssh -T git@github.com
 # 如果测试成功，说明密钥生效，与github的通讯没有问题
