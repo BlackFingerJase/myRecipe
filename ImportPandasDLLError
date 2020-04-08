@@ -1,0 +1,4 @@
+# 1. check uninstall / install pandas by pip, if it cannot work, continue
+# 2. check python type, 32bit or 64bit, then install releated C++ below:
+# https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
+# 3. select 32bit or 64bit version based on python version.
